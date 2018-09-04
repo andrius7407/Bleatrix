@@ -8,7 +8,24 @@ namespace beatrice3
 {
     class Program
     {
-        public static int KiekKartu(int sugalvotas)
+       
+            static void Main(string[] args)
+        {
+            Console.WriteLine("iveskite kiek kartu Beatričė kartos uzduoti");
+            int sugalvotasSkaicius = Convert.ToInt32(Console.ReadLine());
+            if(sugalvotasSkaicius == 0)
+            {
+                Console.WriteLine("insomnia");
+            }
+            else
+            {
+                int kartai = KiekKartuPadides(sugalvotasSkaicius);
+                IsvedimasIKonsole(sugalvotasSkaicius, kartai);
+            }
+            Console.ReadKey();
+        }
+
+        public static int KiekKartuPadides(int sugalvotasSkaicius)
         {
             int nulis = 0;
             int vienas = 0;
@@ -21,15 +38,15 @@ namespace beatrice3
             int astuoni = 0;
             int devyni = 0;
             int suma = 0;
-            int x = 0;
+            int padidintasSkaicius = 0;
             int kartai = 0;
             while (suma < 55)
             {
-                x = x + sugalvotas;
-                int skaicius = x;
-                while (skaicius > 0)
+                padidintasSkaicius += sugalvotasSkaicius;
+                int skaiciusTikrinamas = padidintasSkaicius;
+                while (skaiciusTikrinamas > 0)
                 {
-                    int liekana = skaicius % 10;
+                    int liekana = skaiciusTikrinamas % 10;
                     if (liekana == 0)
                     {
                         nulis = liekana + 10;
@@ -70,44 +87,34 @@ namespace beatrice3
                     {
                         devyni = liekana;
                     }
-                    skaicius = skaicius / 10;
+                    skaiciusTikrinamas = skaiciusTikrinamas / 10;
                 }
                 if (nulis + vienas + du + trys + keturi + penki + sesi + septyni + astuoni + devyni == 55)
-                {                
+                {
                     break;
                 }
                 kartai++;
             }
             return kartai;
         }
-            static void Main(string[] args)
+
+        private static void IsvedimasIKonsole(int sugalvotasSkaicius, int kartai)
         {
-            Console.WriteLine("iveskite kiek kartu Beatričė kartos uzduoti");
-            int sugalvotas = Convert.ToInt32(Console.ReadLine());
-            if(sugalvotas == 0)
+            Console.WriteLine("Beatričė užmigs, kai pasakys {0} - {1}x{2}", sugalvotasSkaicius * (kartai + 1), kartai + 1, sugalvotasSkaicius);
+            for (int i = 0; i < sugalvotasSkaicius; i++)
             {
-                Console.WriteLine("insomnia");
-            }
-            else
-            {
-                int kartai = KiekKartu(sugalvotas);
-                Console.WriteLine("Beatričė užmigs, kai pasakys {0} - {1}x{2}", sugalvotas * (kartai + 1), kartai + 1, sugalvotas);
-                for (int i = 0; i < sugalvotas; i++)
+                Console.WriteLine("iveskite Beatričės sugalvotą skaičių");
+                int sugalvotas2 = Convert.ToInt32(Console.ReadLine());
+                if (sugalvotas2 == 0)
                 {
-                    Console.WriteLine("iveskite Beatričės sugalvotą skaičių");
-                    int sugalvotas2 = Convert.ToInt32(Console.ReadLine());
-                    if(sugalvotas2 == 0)
-                    {
-                        Console.WriteLine("insomnia");
-                    }
-                    else
-                    {
-                        int kartai2 = KiekKartu(sugalvotas2);
-                        Console.WriteLine("Beatričė užmigs, kai pasakys {0} - {1}x{2}", sugalvotas2 * (kartai2 + 1), kartai2 + 1, sugalvotas2);
-                    }
+                    Console.WriteLine("insomnia");
+                }
+                else
+                {
+                    int kartai2 = KiekKartuPadides(sugalvotas2);
+                    Console.WriteLine("Beatričė užmigs, kai pasakys {0} - {1}x{2}", sugalvotas2 * (kartai2 + 1), kartai2 + 1, sugalvotas2);
                 }
             }
-            Console.ReadKey();
         }
     }
 }
