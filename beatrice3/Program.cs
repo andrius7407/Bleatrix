@@ -9,7 +9,7 @@ namespace beatrice3
     class Program
     {
        
-            static void Main(string[] args)
+        static void Main(string[] args)
         {
             Console.WriteLine("iveskite kiek kartu Beatričė kartos uzduoti");
             int sugalvotasSkaicius = Convert.ToInt32(Console.ReadLine());
